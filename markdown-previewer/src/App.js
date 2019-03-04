@@ -3,6 +3,8 @@ import { useState } from 'react';
 import MarkdownInput from './MarkdownInput.js';
 import HtmlOutput from './HtmlOutput.js';
 
+import styles from "./App.module.css";
+
 function App() {
 	const [markdown, setMarkdown] = useState('This **markdown** gets transformed into HTML');
 	
@@ -11,20 +13,16 @@ function App() {
 	}
 	
 	return (
-		<div className="container">
-			<h1 className="text-center">Markdown Previewer</h1>
-			<div className="row">
-				<div className="col col-12 col-md-6">
-					<MarkdownInput
-						markdown={markdown}
-						handleChange={handleChange}
-					/>
-				</div>
-				<div className="col col-12 col-md-6">
-					<HtmlOutput
-						markdown={markdown}
-					/>
-				</div>
+		<div>
+			<h1 className={styles.headline}>Markdown Previewer</h1>
+			<div className={styles.container}>
+				<MarkdownInput
+					markdown={markdown}
+					handleChange={handleChange}
+				/>
+				<HtmlOutput
+					markdown={markdown}
+				/>
 			</div>
 		</div>
 	);
