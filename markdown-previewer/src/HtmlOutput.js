@@ -1,7 +1,7 @@
 import React from 'react';
 import marked from 'marked';
 
-const HtmlOutput = function(props) {
+function HtmlOutput(props) {
   return (
     <div dangerouslySetInnerHTML={{__html: marked(props.markdown)}}></div>
   );

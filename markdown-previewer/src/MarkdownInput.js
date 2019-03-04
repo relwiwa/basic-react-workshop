@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MarkdownInput = function(props) {
+function MarkdownInput(props) {
 	return (
 		<textarea
 			className="form-control"
