@@ -4,7 +4,14 @@
 
 Before we start, we need to setup the **create-react-app client**.
 
-We will install the client from **NPM**. You need to have **Node** installed. If you don't, download and install the latest Long-Term-Support (LTS) version from the [NodeJS website](https://nodejs.org/en/download/).
+### Installing Node and Yarn
+
+You need to have **Node** installed. If you don't, download and install the latest Long-Term-Support (LTS) version from the [NodeJS website](https://nodejs.org/en/download/).
+
+You also need to have **Yarn** installed. Yarn is a package manager for Javascript projects. It is similar to NPM. If you don't have it installed, type the following command into the command line:
+```
+npm install -g yarn
+```
 
 ### Installing create-react-app Client
 
@@ -16,7 +23,7 @@ You can test, whether the client was installed successfully by typing:
 ```
 create-react-app --version
 ```
-You should see something like **1.5.2**
+You should see something like **2.1.1**. Make sure you have a version bigger or equal to 2.
 
 ### Setting up the project with the client
 
@@ -24,7 +31,7 @@ Now move to the parent folder that you want to contain the project. We setup our
 ```
 create-react-app markdown-previewer
 ```
-The client will now install everything we need for us in the project folder **markdown-previewer**.
+The client will now install everything we need for us in the project folder **markdown-previewer**. We don't have to deal with any webpack or other kinds of setup. Many things work out of the box, e.g. CSS Modules.
 
 ### Starting the sample application
 
@@ -34,7 +41,7 @@ cd markdown-previewer
 ```
 The project folder already contains a sample application. Whenever we are in the project folder, we can start the application by typing:
 ```
-npm start
+yarn start
 ```
 Now the application gets started. In a web browser, we can now access the application by entering the following address:
 ```

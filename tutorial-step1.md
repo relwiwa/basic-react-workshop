@@ -21,8 +21,8 @@ Let's explore the mock:
 We see that we have three components:
 
 We have a parent component (red). It has a headline, and two child components:
-* MarkdownInput (blue): It has a textarea where users can enter markdown
-* HtmlOutput (green): It has a div that displays the entered markdown as HTML
+* MarkdownInput (blue): It has an area where users can enter markdown
+* HtmlOutput (green): It has an area that displays the entered markdown as HTML
 
 This time, the mock was already created for you. In future, you should do it yourself. You can do it online on [draw.io](https://draw.io). Or you can use tools like [Pencil](https://pencil.evolus.vn/) or [Balsamiq](https://balsamiq.com/) for your desktop.
 

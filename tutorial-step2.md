@@ -9,13 +9,13 @@ This helps us focus on each component on its own. And we don't get confused with
 
 Let's start with the parent component. It will contain the headline, plus the MarkdownInput and HtmlOutput components.
 
-We put every React component into **its own file**. We already have a **App.js** file. The App component will be our parent component.
+We put every React component into **its own file**. We already have an **App.js** file. The App component will be our parent component.
 
 Let's set up the basics of the App component:
 ```
 import React from 'react';
 
-const App = function() {
+function App() {
   return (
     <div>
       <h1>Markdown Previewer</h1>
@@ -45,7 +45,7 @@ We again set it up as a functional component:
 ```
 import React from 'react';
 
-const MarkdownInput = function() {
+function MarkdownInput() {
   return (
     <textarea
       placeholder="Enter markdown"
@@ -65,18 +65,22 @@ import MarkdownInput from './MarkdownInput.js';
 ```
 In **import statements** you always give the **name of the component** you want to import, along with the **path** to the file where to import from.
 
+Import statements are always placed on top of each file.
+
 Now we can use the MarkdownInput component inside the App.js component. We add it to the JSX in our return statement:
 ```
 return (
   <div>
     <h1>Markdown Previewer</h1>
-    <MarkdownInput />
+		<div>
+			<MarkdownInput />
+		</div>
   </div>
 );
 ```
 We now included the MarkdownInput component in the parent component with a **custom React component tag**. The tag works just like regular HTML tags.
 
-Be aware that React component names and tag names start with **capital letters**.
+Be aware that React component names and tag names have to start with **capital letters**.
 
 ### HtmlOutput component
 
@@ -86,13 +90,13 @@ It will be similar to the MarkdownInput component. But unlike the MarkdownInput 
 
 #### Install marked package
 
-We need to transform the markdown into HTML. In order to do that, we use a package called **marked**. We need to install it via NPM. So in the command line, we stop the create-react-app client with **Command + C**, and then type:
+We need to transform the markdown into HTML. In order to do that, we use a package called **marked**. We need to install it via Yarn. So in the command line, we stop the create-react-app client with **Command + C**, and then type:
 ```
-npm install --save marked
+yarn add marked
 ```
 After the installation, restart the application with:
 ```
-npm start
+yarn start
 ```
 
 #### HtmlOutput component setup
@@ -102,7 +106,7 @@ We again setup a functional component, but this time, we will also use **props**
 ```
 import React from 'react';
 
-const HtmlOutput = function(props) {
+function HtmlOutput(props) {
   return (
     <div>{props.markdown}</div>
   );
@@ -120,7 +124,7 @@ Next, we need to find a way to display the markdown as HTML. We installed **mark
 ```
 import marked from 'marked';
 ```
-When importing NPM packages, we don't have to specify a path. It's enough to state the name of the package.
+When importing Node packages, we don't have to specify a path. It's enough to state the name of the package.
 
 Now, let's use the package to transform the markdown. We change the return statement like this:
 ```
@@ -131,7 +135,7 @@ return (
 Inside the curly braces, we can also **execute Javascript functions**. So we give the markdown to the marked function, and it will return the HTML. This will get rendered in the browser.
 
 #### Add HtmlOutput component to parent component
-Now, let's include the HtmlOutput component in the parent component. In App.js we first import the component:
+Now, let's include the HtmlOutput component in the parent component. In App.js we first import the component on top of our file:
 ```
 import HtmlOutput from './HtmlOutput.js';
 ```
@@ -140,10 +144,12 @@ Then, we include it in the App's JSX, but this time, we will add a property to t
 return (
   <div>
     <h1>Markdown Previewer</h1>
-    <MarkdownInput />
-    <HtmlOutput
-      markdown="# An Example Header"
-    />
+		<div>
+		  <MarkdownInput />
+      <HtmlOutput
+        markdown="# An Example Header"
+      />
+		</div>
   </div>
 );
 ```

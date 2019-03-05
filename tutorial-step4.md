@@ -12,50 +12,44 @@ In our case it makes sense to put the state into the parent App component. Like 
 
 ### Create a state-ful component
 
-So far, we have used functional components. They are also called **state-less components**, because they cannot have a state property.
+So far, we have used functional components without state. So so far, they have been stateless components, they only displayed UI.
 
-There are also **state-ful components**. They are **class-based**.
+You can turn any stateless into a **stateful component**. For functinal components, we have to use the **useState-Hook** to do that.
 
-In general, you try to have **as little state-ful components as possible**. Because whenever there is state, it means, React has to monitor it. When it is just a functional, state-less component, there is nothing to monitor.
+In general, you try to have **as little stateful components as possible**. Because whenever there is state, it means, React has to monitor it. When it is just a stateless component, there is nothing to monitor.
 
-So always try to start with a functional component, and only turn it into a class-based component, when it becomes necessary.
+So always try to start with a stateless component, and only turn it into a stateful component, when it becomes necessary.
 
-Let's change our App component from a functional to a class-based component:
+### Add useState Hook
+
+Let's change our App component from a stateless to a stateful component by using the useState-Hook.
+
+First, we import the useState Hook on top of our file:
 ```
-class App extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>Markdown Previewer</h1>
-        <MarkdownInput />
-        <HtmlOutput
-          markdown="# A Sample Header"
-        />
-      </div>
-    );
-  }
+import { useState } from 'react';
+```
+
+Then we add the markdown state to our App component:
+```
+function App() {
+  const [markdown, setMarkdown] = useState('');
+	return (
+		<div>
+			<h1>Markdown Previewer</h1>
+			<MarkdownInput />
+			<HtmlOutput
+				markdown="# A Sample Header"
+			/>
+		</div>
+	);
 }
 ```
-#### What did we change?
-* We changed App from a function to a **class** that extends **React.Component**. Via the extension our class becomes the extra functionalities of a state-ful React component.
-* We also included a **render method**. It contains the exact return statement that our functional component had. The render method gets executed every time React updates our component.
 
-### Add state
-
-Next, we need to add state to our component. Before the render function we add a constructor function:
-```
-constructor(props) {
-  super(props);
-  this.state = {
-    markdown: ''
-  };
-}
-```
 #### What did we do?
-* We added a **constructor function**. Every time a class-based component gets initiated, the constructor is run. So here is the location where we can configure our component.
-* The constructor function gets a **props argument** and inside the constructor function, we always have to call **super(props)** first.
-* Then we define our **state object** inside the constructor with **this.state**. It is just a regular Javascript object with key-value pairs.
-* We also added markdown as our only state property.
+* We defined our markdown **state object** inside the App functional component. We used the useState Hook to that. The hook returns an array with two fields. We use **array destructuring syntax** to access markdown, and setMarkdown.
+* markdown is the state variable
+* setMarkdown is used to update the markdown state variable. It's important to only use this function when we want to update the markdown state variable.
+* We also initialized the markdown state variable to an empty string.
 
 ### Pass state to child components as props
 
@@ -64,11 +58,10 @@ So far, our HtmlOutput component displays a hard coded placeholder string, that 
 Let's use the value from our state instead:
 ```
 <HtmlOutput
-  markdown={this.state.markdown}
+  markdown={markdown}
 />
 ```
 * We use the curly braces again to access the value from our state object.
-* As you can see, we can access the values from state via **this.state**.
 * Now, every time our markdown changes, the HtmlOutput component gets re-rendered with the new value!
 
 ### Setting the value of MarkdownInput
@@ -76,18 +69,18 @@ Let's use the value from our state instead:
 We also want our MarkdownInput component to use the value from the state. So let's also pass it to it:
 ```
 <MarkdownInput
-  markdown={this.state.markdown}
+  markdown={markdown}
 />
 ```
 Now, also the MarkdownInput component receives the markdown from the state.
 
 This is one of the key features of React: **data flows from top to bottom**. The child component receives its value from the parent component.
 
-**What is state in the parent component, becomes props in the child component. Child components can never change props. Only state can be changed in the parent component. Like this, changes in state affect the props of child components.**
+**What is state in the parent component, becomes props in the child component. Child components can never change props. Only state can be changed in the parent component. Like this, changes in state affect the props of child components** and UI updates take place.
 
 In the MarkdownInput component, we now can use the markdown via **props**:
 ```
-const MarkdownInput = function(props) {
+function MarkdownInput(props) {
   return (
     <textarea
       placeholder="Enter markdown"
@@ -106,11 +99,9 @@ Now, both our MarkdownInput and HtmlOuput component are linked to the markdown v
 
 So far, we don't display anything in the beginning, as we set the markdown state property to an empty string.
 
-Let's change that to display a **default text**:
+Let's change that in App.js to display a **default text**:
 ```
-this.state = {
-  markdown: 'This **markdown** gets transformed into HTML'
-};
+  const [markdown, setMarkdown] = useState('This **markdown** gets transformed into HTML');
 ```
 When you now check your browser, you will see that the default text gets displayed in both of our components.
 
