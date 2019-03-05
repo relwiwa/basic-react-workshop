@@ -2,7 +2,7 @@
 
 ## Use CSS Modules for some styling
 
-Finally, we want to make the Markdown Previewer look a little nicer. We will use CSS Modules to define styles, that are tied to the component they are related to. Unlike regular CSS, they don't pollute the global CSS space, but are local by default.
+Finally, we want to make the Markdown Previewer look a little nicer. We will use CSS Modules to define styles, that are tied to the component they are related to. Unlike regular CSS, they don't pollute the global CSS space, but are **local by default**.
 
 ## Style the App component
 
@@ -10,7 +10,7 @@ In order to style the App component, we have to create a new file with the follo
 ```
 App.module.css
 ```
-The create-react-app client supports CSS Modules, but it's important to follow the pattern of [Componentname]module.css for the file name.
+The create-react-app client supports CSS Modules, but it's important to follow the **pattern of [Componentname]module.css** for the file name.
 
 In App.module.css we define the following styles:
 ```
@@ -30,25 +30,25 @@ First, we need to import the style file on top of our App.js:
 ```
 import styles from "./App.module.css";
 ```
-styles is a Javascript object, that contains the classnames defined in App.module.css. Now, we can add them to our elements. Beware that in JSX we cannot use the class attribute, but we have to use the **className** attribute to assign style classes to elements:
+**styles** is a **Javascript object**, that contains the classnames defined in App.module.css. Now, we can add them to our elements. Beware that in JSX we cannot use the class attribute, but we have to use the **className** attribute to assign style classes to elements:
 ```
 return (
-	<div>
-		<h1 className={styles.headline}>Markdown Previewer</h1>
-		<div className={styles.container}>
-			<MarkdownInput
-				markdown={markdown}
-				handleChange={handleChange}
-			/>
-			<HtmlOutput
-				markdown={markdown}
-			/>
-		</div>
-	</div>
+  <div>
+    <h1 className={styles.headline}>Markdown Previewer</h1>
+    <div className={styles.container}>
+      <MarkdownInput
+        markdown={markdown}
+        handleChange={handleChange}
+      />
+      <HtmlOutput
+        markdown={markdown}
+      />
+    </div>
+  </div>
 );
 ```
 ### What will happen
-* When the component gets compiled, the class names will be transformed to an individual, hashed name. Like this, they are unique and this ensures that they are local.
+* When the component gets compiled, the class names will be transformed to an individual, **hashed name**, e.g. App_headline_x2dd2sjs. Like this, they are unique and this ensures that they are local.
 
 ## Style the MarkdownInput component
 
@@ -74,12 +74,12 @@ import styles from './MarkdownInput.module.css';
 Now we can assign the style classes to the elements:
 ```
 return (
-	<textarea
-		className={styles.markdownInput}
-		onChange={props.handleChange}
-		placeholder="Enter markdown"
-		value={props.markdown}
-	/>
+  <textarea
+    className={styles.markdownInput}
+    onChange={props.handleChange}
+    placeholder="Enter markdown"
+    value={props.markdown}
+  />
 );
 ```
 ## Style the HtmlOutput component
@@ -102,12 +102,12 @@ import styles from './HtmlOutput.module.css';
 ```
 Now we can assign the style classes to the elements:
 ```
-  return (
-    <div
-      className={styles.htmlOutput}
-      dangerouslySetInnerHTML={{__html: marked(props.markdown)}}
-    ></div>
-  );
+return (
+  <div
+    className={styles.htmlOutput}
+    dangerouslySetInnerHTML={{__html: marked(props.markdown)}}
+  ></div>
+);
 ```
 
 And that's it. You completed the MarkdownPreviewer, the first challenge in freeCodeCamp's Data Visualization Certification!

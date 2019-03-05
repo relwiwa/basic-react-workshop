@@ -71,7 +71,7 @@ Now we can use the MarkdownInput component inside the App.js component. We add i
 ```
 return (
   <div>
-	  <h1>Markdown Previewer</h1>
+    <h1>Markdown Previewer</h1>
     <div>
       <MarkdownInput />
     </div>

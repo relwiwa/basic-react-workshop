@@ -10,7 +10,7 @@ In general, you always try to lift your state up as much as possible in the comp
 
 In our case it makes sense to put the state into the parent App component. Like this, we can use the state for both child components.
 
-### Create a state-ful component
+### Create a stateful component
 
 So far, we have used functional components without state. So so far, they have been stateless components, they only displayed UI.
 
@@ -24,7 +24,7 @@ So always try to start with a stateless component, and only turn it into a state
 
 Let's change our App component from a stateless to a stateful component by using the useState-Hook.
 
-First, we import the useState Hook on top of our file:
+First, we **import the useState Hook** on top of our file:
 ```
 import { useState } from 'react';
 ```
@@ -33,23 +33,23 @@ Then we add the markdown state to our App component:
 ```
 function App() {
   const [markdown, setMarkdown] = useState('');
-	return (
-		<div>
-			<h1>Markdown Previewer</h1>
-			<MarkdownInput />
-			<HtmlOutput
-				markdown="# A Sample Header"
-			/>
-		</div>
-	);
+  return (
+    <div>
+      <h1>Markdown Previewer</h1>
+      <MarkdownInput />
+      <HtmlOutput
+        markdown="# A Sample Header"
+      />
+    </div>
+  );
 }
 ```
 
 #### What did we do?
-* We defined our markdown **state object** inside the App functional component. We used the useState Hook to that. The hook returns an array with two fields. We use **array destructuring syntax** to access markdown, and setMarkdown.
-* markdown is the state variable
-* setMarkdown is used to update the markdown state variable. It's important to only use this function when we want to update the markdown state variable.
-* We also initialized the markdown state variable to an empty string.
+* We defined our markdown **state object** inside the App functional component. We used the useState Hook to do that. The hook returns an array with two fields. We use **array destructuring syntax** to access the markdown state variable, and the setMarkdown function.
+* markdown is the **state variable**
+* setMarkdown is used to **update the markdown state variable**. It's important to **only use this function when we want to update the markdown state variable**.
+* We also **initialized** the markdown state variable to an empty string.
 
 ### Pass state to child components as props
 
@@ -101,7 +101,7 @@ So far, we don't display anything in the beginning, as we set the markdown state
 
 Let's change that in App.js to display a **default text**:
 ```
-  const [markdown, setMarkdown] = useState('This **markdown** gets transformed into HTML');
+const [markdown, setMarkdown] = useState('This **markdown** gets transformed into HTML');
 ```
 When you now check your browser, you will see that the default text gets displayed in both of our components.
 
