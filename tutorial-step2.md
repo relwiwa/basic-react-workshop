@@ -71,10 +71,10 @@ Now we can use the MarkdownInput component inside the App.js component. We add i
 ```
 return (
   <div>
-    <h1>Markdown Previewer</h1>
-		<div>
-			<MarkdownInput />
-		</div>
+	  <h1>Markdown Previewer</h1>
+    <div>
+      <MarkdownInput />
+    </div>
   </div>
 );
 ```
@@ -144,12 +144,12 @@ Then, we include it in the App's JSX, but this time, we will add a property to t
 return (
   <div>
     <h1>Markdown Previewer</h1>
-		<div>
-		  <MarkdownInput />
+    <div>
+      <MarkdownInput />
       <HtmlOutput
         markdown="# An Example Header"
       />
-		</div>
+    </div>
   </div>
 );
 ```
